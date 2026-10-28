@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дарья — Product Manager</title>
+<meta name="description" content="Дарья — Product Manager. Строю продукты вокруг пути пользователя: от первого касания до результата. Воронки, retention, A/B-тесты, аналитика.">
+<meta property="og:title" content="Дарья — Product Manager">
+<meta property="og:description" content="Строю продукты вокруг пути пользователя. Кейсы с цифрами.">
+<style>
+  :root {
+    --bg: #FAFBFC;
+    --card: #FFFFFF;
+    --text: #334155;
+    --heading: #0F172A;
+    --muted: #64748B;
+    --accent: #2563EB;
+    --accent-2: #38BDF8;
+    --accent-dark: #1D4ED8;
+    --accent-soft: #EFF6FF;
+    --grad: linear-gradient(120deg, #2563EB 0%, #38BDF8 100%);
+    --border: #E5E9F0;
+    --radius: 14px;
+    --shadow-hover: 0 10px 28px rgba(37,99,235,0.10);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(900px 500px at 0% 0%, #E0F2FE 0%, transparent 55%),
+      radial-gradient(800px 500px at 100% 0%, #E0E7FF 0%, transparent 50%),
+      linear-gradient(180deg, #FAFBFC 0%, #F5F8FC 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+  /* ===== HERO ===== */
+  .hero { padding: 110px 0 70px; position: relative; overflow: hidden; }
+  .hero::after {
+    content:''; position:absolute; top:-120px; right:-120px;
+    width:500px; height:500px;
+    background: radial-gradient(circle, rgba(56,189,248,0.10), rgba(129,140,248,0.06) 45%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-inner { max-width: 760px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:8px;
+    color: var(--accent); font-size: 13px; font-weight: 600;
+    margin-bottom: 24px; letter-spacing: 0.01em;
+  }
+  .badge .dot { width:6px; height:6px; border-radius:50%; background: var(--accent); }
+  h1 {
+    font-size: clamp(34px, 4.6vw, 52px);
+    line-height: 1.1; font-weight: 700;
+    letter-spacing: -0.03em; margin-bottom: 22px;
+    color: var(--heading);
+  }
+  h1 .accent {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    font-size: clamp(16px, 1.8vw, 18px);
+    color: var(--text); max-width: 620px; margin-bottom: 16px;
+  }
+  .hero p.problem {
+    font-size: 15.5px; color: var(--muted); max-width: 620px;
+    margin-bottom: 34px; padding: 13px 16px;
+    border-left: 3px solid var(--accent);
+    background: rgba(255,255,255,0.6);
+    border-radius: 0 8px 8px 0;
+  }
+  .hero p.problem strong { color: var(--heading); font-weight: 600; }
+  .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom: 52px; }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 14px 26px; border-radius: 10px;
+    font-size: 14.5px; font-weight: 600;
+    text-decoration: none; transition: all 0.18s ease; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--grad); color:#fff; box-shadow: 0 6px 16px rgba(37,99,235,0.22); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(37,99,235,0.30); }
+  .btn-secondary { background: transparent; color: var(--heading); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--muted); }
+
+  /* ===== STATS ===== */
+  .stats {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px; padding-top: 34px; border-top: 1px solid var(--border);
+  }
+  .stat .num {
+    font-size: 28px; font-weight: 700; letter-spacing:-0.02em;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ===== SECTION ===== */
+  section { padding: 72px 0; border-top: 1px solid var(--border); }
+  .section-head { margin-bottom: 40px; max-width: 620px; }
+  .section-head h2 {
+    font-size: clamp(26px, 3.4vw, 36px); font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 12px; color: var(--heading);
+    position: relative; display: inline-block;
+  }
+  .section-head h2::after {
+    content:''; position:absolute; left:0; bottom:-9px;
+    width: 50px; height: 3px; border-radius: 3px; background: var(--grad);
+  }
+  .section-head p { color: var(--muted); font-size: 16px; margin-top: 18px; }
+
+  /* ===== JOURNEY ===== */
+  .journey-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+  .journey-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    transition: all 0.2s ease;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .journey-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: #DBEAFE; }
+  .journey-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height: 4px;
+    background: var(--journey-color, var(--accent));
+  }
+  .journey-head {
+    display:flex; align-items:center; gap:10px; margin-bottom: 14px;
+  }
+  .journey-step {
+    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--journey-color, var(--accent));
+    color: #fff; font-size: 14px; font-weight: 700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .journey-card h3 {
+    font-size: 16px; font-weight: 600; color: var(--heading);
+    margin: 0; line-height: 1.25;
+  }
+  .journey-problem {
+    font-size: 13px; color: var(--muted);
+    background: #F8FAFC; border-left: 3px solid #CBD5E1;
+    padding: 9px 11px; border-radius: 0 6px 6px 0;
+    margin-bottom: 8px; line-height: 1.5;
+  }
+  .journey-problem strong { color: #475569; font-weight: 600; }
+  .journey-solution {
+    font-size: 13px; color: var(--text);
+    background: var(--journey-bg, var(--accent-soft));
+    border-left: 3px solid var(--journey-color, var(--accent));
+    padding: 9px 11px; border-radius: 0 6px 6px 0;
+    line-height: 1.5;
+  }
+  .journey-solution strong { color: var(--heading); font-weight: 600; }
+
+  /* Цвета для 5 этапов */
+  .journey-card:nth-child(1) { --journey-color: #38BDF8; --journey-bg: #F0F9FF; }
+  .journey-card:nth-child(2) { --journey-color: #0EA5E9; --journey-bg: #F0F9FF; }
+  .journey-card:nth-child(3) { --journey-color: #2563EB; --journey-bg: #EFF6FF; }
+  .journey-card:nth-child(4) { --journey-color: #1D4ED8; --journey-bg: #EFF6FF; }
+  .journey-card:nth-child(5) { --journey-color: #1E3A8A; --journey-bg: #EEF2FF; }
+
+  /* ===== CASES ===== */
+  .case-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+  .case {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px;
+    transition: all 0.2s ease;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  .case::before {
+    content:''; position:absolute; top:0; left:0; right:0; height: 3px;
+    background: var(--grad); opacity: 0; transition: opacity 0.2s ease;
+  }
+  .case:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: #DBEAFE; }
+  .case:hover::before { opacity: 1; }
+  .case h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--heading); letter-spacing: -0.01em; }
+  .case .task { color: var(--muted); font-size: 13.5px; margin-bottom: 14px; line-height: 1.5; }
+  .case ul { list-style: none; margin-bottom: 16px; flex-grow: 1; }
+  .case ul li { font-size: 13.5px; color: var(--text); padding-left: 16px; position: relative; margin-bottom: 6px; line-height: 1.5; }
+  .case ul li::before { content:'—'; position:absolute; left:0; color: var(--accent); }
+  .result {
+    background: var(--accent-soft);
+    padding: 12px 14px; border-radius: 8px;
+    font-size: 13.5px; font-weight: 600; margin-bottom: 14px;
+    color: var(--accent-dark);
+    border-left: 3px solid var(--accent);
+    line-height: 1.5;
+  }
+  .tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .tag {
+    font-size: 11.5px; font-weight: 500; padding: 4px 10px; border-radius: 6px;
+    background: var(--bg); color: var(--muted); border: 1px solid var(--border);
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid { display:grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items:start; }
+  .about-text p { color: var(--text); margin-bottom: 16px; font-size: 15.5px; line-height: 1.65; }
+  .about-text p strong { color: var(--heading); font-weight: 600; }
+  .stack-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    position: relative; overflow: hidden;
+  }
+  .stack-box::before {
+    content:''; position:absolute; top:0; left:0; right:0; height: 3px;
+    background: var(--grad);
+  }
+  .stack-box h4 {
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin-bottom: 16px; font-weight: 600;
+  }
+  .stack-list { display:flex; flex-wrap:wrap; gap: 7px; }
+  .stack-item {
+    font-size: 12.5px; padding: 6px 11px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--accent-dark);
+  }
+
+  /* ===== ROUTINE ===== */
+  .routine-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 10px; }
+  .routine-item {
+    display:flex; gap:14px; align-items:flex-start;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+    transition: all 0.2s ease;
+  }
+  .routine-item:hover { border-color: #DBEAFE; box-shadow: var(--shadow-hover); }
+  .routine-item .num {
+    flex-shrink:0; width: 26px; height: 26px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--accent-dark);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 12px; font-weight: 700;
+  }
+  .routine-item p { font-size: 13.5px; color: var(--text); line-height: 1.55; }
+
+  /* ===== CONTACT ===== */
+  .contact { text-align: center; padding: 80px 0; }
+  .contact h2 {
+    font-size: clamp(28px, 3.8vw, 40px); font-weight: 700; margin-bottom: 14px;
+    letter-spacing:-0.025em;
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  .contact p { color: var(--muted); font-size: 16px; margin-bottom: 34px; }
+  .contact-links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .contact-link {
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 14px 24px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--heading); text-decoration: none;
+    font-size: 14.5px; font-weight: 500; transition: all 0.18s ease;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 8px 20px rgba(37,99,235,0.12); }
+
+  /* ===== FOOTER ===== */
+  footer { padding: 32px 0; border-top: 1px solid var(--border); text-align:center; color: var(--muted); font-size: 13px; }
+
+  /* ===== REVEAL ===== */
+  .reveal { opacity:0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity:1; transform: none; }
+
+  @media (max-width: 860px) {
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero { padding: 76px 0 54px; }
+    section { padding: 54px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="badge"><span class="dot"></span> Product Manager · B2C · Data-driven</div>
+      <h1>Ищу узкие места в воронке <span class="accent">и превращаю данные в рост конверсии</span></h1>
+      <p class="lead">Не просто «запустить фичу», а сделать так, чтобы пользователь дошёл до результата. Работаю с транзакционными воронками: от первого касания до успешной записи и повторного возврата.</p>
+      <p class="problem"><strong>Проблема, которую я решаю:</strong> трафик есть, но пользователь уходит на этапе выбора или записи. Я анализирую воронку, нахожу узкие места, проверяю гипотезы через A/B-тесты и усиливаю конверсию без потери UX.</p>
+      <div class="hero-actions">
+        <a href="#journey" class="btn btn-primary">Путь пользователя →</a>
+        <a href="#cases" class="btn btn-secondary">Смотреть кейсы</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">2,5 года</div><div class="label">в B2C-продуктах</div></div>
+      <div class="stat"><div class="num">1000+</div><div class="label">регистраций в MVP</div></div>
+      <div class="stat"><div class="num">+25%</div><div class="label">конверсия в покупку</div></div>
+      <div class="stat"><div class="num">−80%</div><div class="label">Time-to-Market</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="journey">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Путь пользователя, который я выстраиваю</h2>
+      <p>Пять этапов транзакционной воронки. В каждом — проблема и мой вклад в её решение на данных.</p>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-card reveal">
+        <div class="journey-head">
+          <div class="journey-step">01</div>
+          <h3>Привлечение</h3>
+        </div>
+        <p class="journey-problem"><strong>Проблема:</strong> трафик приходит, но не конвертируется в интерес на лендингах.</p>
+        <p class="journey-solution"><strong>Что делаю:</strong> анализирую креативы и лендинги, проверяю гипотезы через A/B, работаю с дизайнерами над UX.</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-head">
+          <div class="journey-step">02</div>
+          <h3>Выбор и запись</h3>
+        </div>
+        <p class="journey-problem"><strong>Проблема:</strong> пользователь заходит, но бросает сценарий на этапе выбора.</p>
+        <p class="journey-solution"><strong>Что делаю:</strong> ищу узкие места в воронке записи, упрощаю шаги, улучшаю сценарий совместно с дизайнерами.</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-head">
+          <div class="journey-step">03</div>
+          <h3>Успешная конверсия</h3>
+        </div>
+        <p class="journey-problem"><strong>Проблема:</strong> рост трафика не даёт роста выручки из-за низкой конверсии.</p>
+        <p class="journey-solution"><strong>Что делаю:</strong> проектирую эксперименты на рост конверсии, слежу, чтобы рост метрик не ухудшал UX.</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-head">
+          <div class="journey-step">04</div>
+          <h3>Возврат</h3>
+        </div>
+        <p class="journey-problem"><strong>Проблема:</strong> пользователь совершил действие, но не возвращается.</p>
+        <p class="journey-solution"><strong>Что делаю:</strong> анализирую retention, запускаю сценарии повторного вовлечения (email/push, контент).</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-head">
+          <div class="journey-step">05</div>
+          <h3>Рост и масштаб</h3>
+        </div>
+        <p class="journey-problem"><strong>Проблема:</strong> ручные решения не масштабируются, данные не собираются.</p>
+        <p class="journey-solution"><strong>Что делаю:</strong> настраиваю дашборды (GA, Метрика, Sheets), внедряю AI-инструменты для скорости.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Кейсы</h2>
+      <p>Задача, мой вклад и результат в цифрах.</p>
+    </div>
+    <div class="case-grid">
+      <!-- Самый релевантный кейс - наверх -->
+      <div class="case reveal">
+        <h3>Оптимизация воронки и рост конверсии</h3>
+        <p class="task">Задача: найти узкие места в воронке, протестировать гипотезы и повысить конверсию.</p>
+        <ul>
+          <li>Внедрила регулярную аналитику и дашборды (GA, Яндекс Метрика, Google Sheets)</li>
+          <li>Формулировала гипотезы на основе данных и проверяла их через A/B-тесты</li>
+          <li>Совместно с дизайнерами улучшала пользовательские сценарии</li>
+        </ul>
+        <div class="result">Оперативное реагирование на отклонения в конверсиях, поиск узких мест и точек роста</div>
+        <div class="tags"><span class="tag">A/B testing</span><span class="tag">GA</span><span class="tag">Яндекс Метрика</span><span class="tag">Google Sheets</span></div>
+      </div>
+      
+      <div class="case reveal">
+        <h3>Запуск продукта с нуля (MVP)</h3>
+        <p class="task">Задача: вывести новый B2C-продукт на рынок без инфраструктуры.</p>
+        <ul>
+          <li>Сформировала концепцию на анализе рынка и аудитории</li>
+          <li>Спроектировала и запустила MVP за 2 недели (лендинг + CRM + email)</li>
+          <li>Вела кросс-функциональную команду до пост-релизной аналитики</li>
+        </ul>
+        <div class="result">1000+ регистраций, конверсия 20%+</div>
+        <div class="tags"><span class="tag">MVP</span><span class="tag">Landing</span><span class="tag">CRM</span><span class="tag">UX/UI</span></div>
+      </div>
+
+      <div class="case reveal">
+        <h3>Развитие через фичи (эксперименты)</h3>
+        <p class="task">Задача: ускорить рост через новую механику.</p>
+        <ul>
+          <li>Спроектировала игровую механику как продуктовую фичу за 2 недели</li>
+          <li>Приоритизировала задачи, координировала Design, Dev, CRM, Sales</li>
+        </ul>
+        <div class="result">500+ активированных промокодов, конверсия в покупку +25% к плану</div>
+        <div class="tags"><span class="tag">Feature development</span><span class="tag">A/B testing</span></div>
+      </div>
+
+      <div class="case reveal">
+        <h3>Вывод продукта на новые рынки через AI</h3>
+        <p class="task">Задача: масштабирование без бюджета.</p>
+        <ul>
+          <li>Разработала и внедрила AI-пайплайн локализации на базе ChatGPT</li>
+          <li>Провела анализ рынков и адаптировала продукт под новую аудиторию</li>
+        </ul>
+        <div class="result">2 новых рынка с нулевым бюджетом, Time-to-Market −80%</div>
+        <div class="tags"><span class="tag">AI</span><span class="tag">ChatGPT</span><span class="tag">Market entry</span></div>
+      </div>
+
+      <div class="case reveal">
+        <h3>Оптимизация продуктового портфеля</h3>
+        <p class="task">Задача: найти точки роста и убрать неэффективное.</p>
+        <ul>
+          <li>Провела анализ продуктовой матрицы (ABC-XYZ)</li>
+          <li>Выводы легли в основу продуктовой стратегии</li>
+        </ul>
+        <div class="result">Издержки −20%, выручка по бестселлерам +13%</div>
+        <div class="tags"><span class="tag">Analytics</span><span class="tag">Data-driven</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal"><h2>Обо мне</h2></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Я <strong>Product Manager</strong> с опытом 2,5 года в B2C-продуктах. Моя суперсила — <strong>видеть путь пользователя целиком</strong> и находить узкие места в воронке на основе данных.</p>
+        <p>Сильная сторона — <strong>креативность + структурность</strong>. Придумываю гипотезы и довожу их до результата: от механик вовлеченности до AI-пайплайнов.</p>
+        <p>Люблю <strong>UX/UI и пользовательские сценарии</strong>: работаю с дизайнерами, запускаю лендинги и интерактивы. <strong>AI-инструменты (ChatGPT, Claude) — в рабочем арсенале.</strong></p>
+        <p>Работала в <strong>e-commerce и транзакционных продуктах</strong>: воронки, конверсия, отток, CRM и email-кампании. Понимаю логику <strong>юнит-экономики</strong> — как метрики на уровне клиента складываются в бизнес-результат.</p>
+      </div>
+      <div class="stack-box reveal">
+        <h4>Навыки и инструменты</h4>
+        <div class="stack-list">
+          <span class="stack-item">A/B-тестирование</span>
+          <span class="stack-item">Продуктовые метрики</span>
+          <span class="stack-item">Воронки и конверсии</span>
+          <span class="stack-item">UX/UI</span>
+          <span class="stack-item">Google Analytics</span>
+          <span class="stack-item">Яндекс Метрика</span>
+          <span class="stack-item">Google Sheets / Excel</span>
+          <span class="stack-item">SQL (базовый)</span>
+          <span class="stack-item">Figma</span>
+          <span class="stack-item">Jira</span>
+          <span class="stack-item">Amplitude (базовый)</span>
+          <span class="stack-item">AI-инструменты</span>
+          <span class="stack-item">ChatGPT / Claude</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="routine">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Что я делаю каждый день</h2>
+      <p>Рутина продуктового PM — то, что стоит за кейсами.</p>
+    </div>
+    <div class="routine-list">
+      <div class="routine-item reveal"><div class="num">1</div><p>Исследую воронку записи/покупки, нахожу узкие места</p></div>
+      <div class="routine-item reveal"><div class="num">2</div><p>Проектирую и запускаю A/B-тесты, анализирую результаты</p></div>
+      <div class="routine-item reveal"><div class="num">3</div><p>Работаю с продуктовыми метриками (конверсия, отток, retention)</p></div>
+      <div class="routine-item reveal"><div class="num">4</div><p>Улучшаю пользовательские сценарии вместе с дизайнерами</p></div>
+      <div class="routine-item reveal"><div class="num">5</div><p>Формулирую гипотезы на основе данных и пользовательских проблем</p></div>
+      <div class="routine-item reveal"><div class="num">6</div><p>Строю дашборды и работаю с таблицами для анализа</p></div>
+      <div class="routine-item reveal"><div class="num">7</div><p>Использую AI-инструменты для ускорения рутины</p></div>
+      <div class="routine-item reveal"><div class="num">8</div><p>Координирую команду (разработка 10+, дизайн, аналитика)</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Давайте обсудим, чем я могу быть полезна</h2>
+    <p>Открыта к сотрудничеству — на позицию в команде или проект.</p>
+    <div class="contact-links">
+      <a href="mailto:darsyncdigital@gmail.com" class="contact-link">✉️ darsyncdigital@gmail.com</a>
+      <a href="https://t.me/dariasilenty" class="contact-link" target="_blank">💬 @dariasilenty</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Product Manager · Портфолио</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
